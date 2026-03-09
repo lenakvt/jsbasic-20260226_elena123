@@ -1,3 +1,8 @@
 function ucFirst(str) {
-  // ваш код...
+  if (typeof str !== 'string') return '';
+  if (typeof str === 'string' && str.trim() === '') {
+    return '';
+  }
+  
+  return str[0].toUpperCase() + str.slice(1);
 }

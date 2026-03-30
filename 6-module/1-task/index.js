@@ -43,10 +43,10 @@ export default class UserTable {
       const tr = document.createElement('tr');
       
       // Добавляем ячейки с данными
-      tr.append(this.createCell(row.name));
-      tr.append(this.createCell(row.age));
-      tr.append(this.createCell(row.salary));
-      tr.append(this.createCell(row.city));
+      tr.append(this._createCell(row.name));
+      tr.append(this._createCell(row.age));
+      tr.append(this._createCell(row.salary));
+      tr.append(this._createCell(row.city));
       
       // Добавляем ячейку с кнопкой удаления
       const tdButton = document.createElement('td');
@@ -64,7 +64,7 @@ export default class UserTable {
     this._table.append(tbody);
   }
   
-  createCell(text) {
+  _createCell(text) {
     const td = document.createElement('td');
     td.textContent = text;
     return td;

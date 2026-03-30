@@ -23,7 +23,7 @@ function initCarousel() {
       leftArrow.style.display = '';
     }
   });
-  //Переключать карусель вправо 
+  //Переключать карусель влево 
   leftArrow.addEventListener('click', () => {
     if (currentSlideIndex > 0) {
       currentSlideIndex--;

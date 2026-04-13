@@ -39,6 +39,51 @@ export default class CartIcon {
   }
 
   updatePosition() {
-    // ваш код ...
+    // Проверяем, видима ли иконка на странице
+    if (!this.elem.offsetHeight) {
+      return;
+    }
+
+    // Проверяем мобильную ширину
+    if (document.documentElement.clientWidth <= 767) {
+      Object.assign(this.elem.style, {
+        position: '',
+        top: '',
+        left: '',
+        zIndex: ''
+      });
+      return;
+    }
+
+    // Инициализируем начальную координату только один раз
+    if (!this.initialTopCoord) {
+      this.initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
+    }
+
+    // Проверяем, прокручена ли страница ниже начальной позиции иконки
+    if (window.pageYOffset > this.initialTopCoord) {
+      // Вычисляем отступ по горизонтали
+      let leftIndent = Math.min(
+        document.querySelector('.container').getBoundingClientRect().right + 20,
+        document.documentElement.clientWidth - this.elem.offsetWidth - 10
+      ) + 'px';
+
+      // Применяем фиксированное позиционирование
+      Object.assign(this.elem.style, {
+        position: 'fixed',
+        top: '50px',
+        zIndex: 1e3,
+        right: '10px',
+        left: leftIndent
+      });
+    } else {
+      // Возвращаем к исходному позиционированию
+      Object.assign(this.elem.style, {
+        position: '',
+        top: '',
+        left: '',
+        zIndex: ''
+      });
+    }
   }
 }
